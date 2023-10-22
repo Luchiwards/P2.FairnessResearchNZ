@@ -292,11 +292,11 @@ class FairnessProcessMitigation:
         params = {
             'criterion': [
                 'entropy',
-                'gini',
+                # 'gini',
             ],
-            'max_depth': [10, 20, 30, 40, None],
-            'min_samples_split': [1, 10, 20],
-            'min_samples_leaf': [1, 4, 6, 8],
+            # 'max_depth': [10, 20, 30, 40, None],
+            # 'min_samples_split': [1, 10, 20],
+            # 'min_samples_leaf': [1, 4, 6, 8],
         }
         classifier = tree.DecisionTreeClassifier(random_state=42)
         classifier = self._best_model_params(
@@ -438,6 +438,8 @@ class FairnessProcessMitigation:
 
         if self.save_images:
             name_model_file = '_'.join([word[0:4] for word in name.split(' ')])
+            if not os.path.exists("../plots/"):
+                os.makedirs("../plots/")
             plt.savefig(f"../plots/{self.get_model_database_name()}_{name_model_file}_eq_odds.png", dpi=80)
 
         plt.show()

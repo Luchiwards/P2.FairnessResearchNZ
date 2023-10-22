@@ -35,14 +35,7 @@ class AvailableModels(enum.Enum):
 
 
 class DatasetsFiles(enum.Enum):
-    DS_JUSTICE = 'justice-1980-1999.csv.bz2'
-    DS_JUSTICE_2 = 'justice-2000-2022.csv.bz2'
-    ANNUAL_APPREHENSIONS = 'annual-apprehensions.csv.bz2'
-    DS_POLICE = 'Ethnicity AES_Full Data_data.csv.bz2'
-    DS_POLICE_TWO = 'dataset_police.csv.bz2'
-    # DS_JUSTICE_1980_1984 = 'justice-coded-1980-1984.csv.bz2'
-    # DS_JUSTICE_1985_1991 = 'justice-coded-1985-1991.csv.bz2'
-    # DS_JUSTICE_1992_2000 = 'justice-coded-1992-2000.csv.bz2'
+    DS_POLICE = 'dataset_police.csv.bz2'
     DS_JUSTICE_2001_2009 = 'justice-coded-2001-2009.csv.bz2'
     DS_JUSTICE_2010_2014 = 'justice-coded-2010-2014.csv.bz2'
     DS_JUSTICE_2015_2022 = 'justice-coded-2015-2022.csv.bz2'

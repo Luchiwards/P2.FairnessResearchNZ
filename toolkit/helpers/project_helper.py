@@ -2,6 +2,7 @@ import json
 import os
 from typing import List, Dict, Optional
 import joblib
+import numpy as np
 
 import pandas as pd
 
@@ -292,11 +293,11 @@ class FairnessProcessMitigation:
         params = {
             'criterion': [
                 'entropy',
-                # 'gini',
+                'gini',
             ],
-            # 'max_depth': [10, 20, 30, 40, None],
-            # 'min_samples_split': [1, 10, 20],
-            # 'min_samples_leaf': [1, 4, 6, 8],
+            'max_depth': [10, 20, 30, 40, None],
+            'min_samples_split': [1, 10, 20],
+            'min_samples_leaf': [1, 4, 6, 8],
         }
         classifier = tree.DecisionTreeClassifier(random_state=42)
         classifier = self._best_model_params(
@@ -308,10 +309,10 @@ class FairnessProcessMitigation:
 
     def _fit_logistic_regression(self) -> None:
         params = {
-            # 'C': np.logspace(-4, 4, 10),
-            # 'penalty': ['l1', 'l2'],
+            'C': np.logspace(-4, 4, 10),
+            'penalty': ['l1', 'l2'],
             'solver': ['lbfgs'],
-            # 'l1_ratio': np.linspace(0, 1, 10),
+            'l1_ratio': np.linspace(0, 1, 10),
         }
         classifier = linear_model.LogisticRegression(n_jobs=self.n_jobs, max_iter=10000, random_state=42)
         classifier = self._best_model_params(
@@ -323,11 +324,11 @@ class FairnessProcessMitigation:
 
     def _fit_random_forest(self) -> None:
         params = {
-            # 'n_estimators': [10, 50, 100, 200, 500],
-            # 'max_features': ['auto', 'sqrt', 'log2'],
-            # 'max_depth': [None, 10, 20, 30, 40, 50],
-            # 'min_samples_split': [2, 5, 10],
-            # 'min_samples_leaf': [1, 2, 4],
+            'n_estimators': [10, 50, 100, 200, 500],
+            'max_features': ['auto', 'sqrt', 'log2'],
+            'max_depth': [None, 10, 20, 30, 40, 50],
+            'min_samples_split': [2, 5, 10],
+            'min_samples_leaf': [1, 2, 4],
             'bootstrap': [True, False],
         }
         classifier = ensemble.RandomForestClassifier(n_jobs=self.n_jobs, random_state=42)
@@ -348,12 +349,10 @@ class FairnessProcessMitigation:
 
     def _fit_k_neighbors(self) -> None:
         params = {
-            'n_neighbors': [1, 2, 4],
-            #     'n_neighbors': np.arange(1, 21),
-            #     'weights': ['uniform', 'distance'],
-            'metric': ['euclidean'],
-            #     'metric': ['euclidean', 'manhattan', 'minkowski'],
-            #     'p': [1, 2]
+            'n_neighbors': np.arange(1, 21),
+            'weights': ['uniform', 'distance'],
+            'metric': ['euclidean', 'manhattan', 'minkowski'],
+            'p': [1, 2]
         }
         classifier = neighbors.KNeighborsClassifier(n_jobs=self.n_jobs)
         classifier = self._best_model_params(
@@ -366,13 +365,12 @@ class FairnessProcessMitigation:
     def _fit_gradient_boosting(self) -> None:
         classifier = ensemble.GradientBoostingClassifier(random_state=42)
         params = {
-            'n_estimators': [50],
-            # 'n_estimators': [50, 100, 200],
-            # 'learning_rate': [0.001, 0.01],
-            # 'max_depth': [3, 4, 5, 6],
-            # 'min_samples_split': [2, 3, 4],
-            # 'min_samples_leaf': [1, 2, 3],
-            # 'subsample': [0.8, 0.9, 1]
+            'n_estimators': [50, 100, 200],
+            'learning_rate': [0.001, 0.01],
+            'max_depth': [3, 4, 5, 6],
+            'min_samples_split': [2, 3, 4],
+            'min_samples_leaf': [1, 2, 3],
+            'subsample': [0.8, 0.9, 1]
         }
         classifier = self._best_model_params(
             params=params,
@@ -534,6 +532,8 @@ class FairnessProcessMitigation:
             print(f":::::::: Generating {name}::::::::::::::::::::::::")
             print(":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::")
 
+            metrics_per_group = None
+            name = ''
             if self.postprocessing_strategy is None:
                 metrics_per_group = self._compute_metrics(model_enum)
                 self._plot_equalized_odds(

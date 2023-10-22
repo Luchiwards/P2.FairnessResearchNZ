@@ -63,7 +63,7 @@ metrics.json
 ```
 
 The files to run the mitigations on the datasests can be found in the
-following path `/python/analysis`. It takes several minutes to
+following path `/toolkit/analysis`. It takes several minutes to
 complete this process. Execute the following:
 
 ```sh
@@ -72,12 +72,12 @@ python main.py run_mitigations_police
 ```
 
 The script produces different plots that can be found in the following
-path: `/python/plots`. The path for the plots will be created during
+path: `/toolkit/plots`. The path for the plots will be created during
 the run of the scripts above.
 
 A top layer was created to manage the datasets as objects that the
 AIF360 toolkit can handle this objects can be found in the following
-path: `/python/datasets_objects`. The files that contain the objects
+path: `/toolkit/datasets_objects`. The files that contain the objects
 are:
 
 ```
@@ -90,3 +90,14 @@ To generate the metrics run
 ```sh
 python main.py plot_metrics
 ```
+
+All the models will be saved after being trained inside toolkit/models
+
+### Selecting models and mitigations
+
+Inside toolkit/analysis/run_mitigations_justice.py and toolkit/analysis/run_mitigations_police.py, in the object 
+FairnessProcessMitigation the models and mitigations can be set.
+
+models_to_fit contains an array of the models that are available to run.
+preprocessing_strategies contains the preprocessing strategies available.
+postprocessing_strategy contains the postprocessing strategy available.

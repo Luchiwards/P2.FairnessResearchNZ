@@ -31,10 +31,10 @@ def run_process(
         postprocessing_strategy=postprocessing_strategy,
         models_to_fit=[
             common.AvailableModels.DECISION_TREE,
-            # common.AvailableModels.LOGISTIC_REGRESSION,
-            # common.AvailableModels.RANDOM_FOREST,
-            # common.AvailableModels.GRADIENT_BOOSTING,
-            # common.AvailableModels.K_NEIGHBORS,
+            common.AvailableModels.LOGISTIC_REGRESSION,
+            common.AvailableModels.RANDOM_FOREST,
+            common.AvailableModels.GRADIENT_BOOSTING,
+            common.AvailableModels.K_NEIGHBORS,
         ]
     )
     fairness_process.fit_models()
@@ -43,37 +43,37 @@ def run_process(
 
 def run_mitigations():
     run_process()
-    # run_process(
-    #     preprocessing_strategies=[common.PreProcessingStrategies.REWEIGHING]
-    # )
-    # run_process(
-    #     preprocessing_strategies=[common.PreProcessingStrategies.DISPARATE_IMPACT_REMOVER]
-    # )
-    # run_process(
-    #     preprocessing_strategies=[
-    #         common.PreProcessingStrategies.DISPARATE_IMPACT_REMOVER,
-    #         common.PreProcessingStrategies.REWEIGHING
-    #     ]
-    # )
-    # run_process(
-    #     preprocessing_strategies=[
-    #         common.PreProcessingStrategies.DISPARATE_IMPACT_REMOVER,
-    #     ],
-    #     postprocessing_strategy=common.PostProcessingStrategy.CALIBRATE_ODDS,
-    # )
-    # run_process(
-    #     preprocessing_strategies=[
-    #         common.PreProcessingStrategies.REWEIGHING
-    #     ],
-    #     postprocessing_strategy=common.PostProcessingStrategy.CALIBRATE_ODDS,
-    # )
-    # run_process(
-    #     preprocessing_strategies=[
-    #         common.PreProcessingStrategies.DISPARATE_IMPACT_REMOVER,
-    #         common.PreProcessingStrategies.REWEIGHING
-    #     ],
-    #     postprocessing_strategy=common.PostProcessingStrategy.CALIBRATE_ODDS,
-    # )
-    # run_process(
-    #     postprocessing_strategy=common.PostProcessingStrategy.CALIBRATE_ODDS,
-    # )
+    run_process(
+        preprocessing_strategies=[common.PreProcessingStrategies.REWEIGHING]
+    )
+    run_process(
+        preprocessing_strategies=[common.PreProcessingStrategies.DISPARATE_IMPACT_REMOVER]
+    )
+    run_process(
+        preprocessing_strategies=[
+            common.PreProcessingStrategies.DISPARATE_IMPACT_REMOVER,
+            common.PreProcessingStrategies.REWEIGHING
+        ]
+    )
+    run_process(
+        preprocessing_strategies=[
+            common.PreProcessingStrategies.DISPARATE_IMPACT_REMOVER,
+        ],
+        postprocessing_strategy=common.PostProcessingStrategy.CALIBRATE_ODDS,
+    )
+    run_process(
+        preprocessing_strategies=[
+            common.PreProcessingStrategies.REWEIGHING
+        ],
+        postprocessing_strategy=common.PostProcessingStrategy.CALIBRATE_ODDS,
+    )
+    run_process(
+        preprocessing_strategies=[
+            common.PreProcessingStrategies.DISPARATE_IMPACT_REMOVER,
+            common.PreProcessingStrategies.REWEIGHING
+        ],
+        postprocessing_strategy=common.PostProcessingStrategy.CALIBRATE_ODDS,
+    )
+    run_process(
+        postprocessing_strategy=common.PostProcessingStrategy.CALIBRATE_ODDS,
+    )

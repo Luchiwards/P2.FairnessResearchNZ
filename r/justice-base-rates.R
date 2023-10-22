@@ -2,19 +2,19 @@ source("r/plots-common.R")
 
 ## justice: main dataset
 ## suppress encoding, due to MAIN_OFFENCE column
-justice <- read.csv("../data/justice-coded-2015-2022.csv.bz2",
+justice <- read.csv("data/justice-coded-2015-2022.csv.bz2",
   colClasses = "character"
 )
 ## add earlier years
 justice <- rbind(
   justice,
-  read.csv("../data/justice-coded-2010-2014.csv.bz2",
+  read.csv("data/justice-coded-2010-2014.csv.bz2",
     colClasses = "character"
   )
 )
 justice <- rbind(
   justice,
-  read.csv("../data/justice-coded-2001-2009.csv.bz2",
+  read.csv("data/justice-coded-2001-2009.csv.bz2",
     colClasses = "character"
   )
 )

@@ -28,7 +28,7 @@ source information.
 
 ## TeX
 
-The source to the the paper, as well as a Makefile to build it, are in
+The source to the paper, as well as a Makefile to build it, are in
 the `tex/` directory.
 
 To build the paper, along with XXX some XXX of the necessary plots,
@@ -59,12 +59,16 @@ Our study builds several machine learning models and performs several
 analyses on each of them. It stores all the results in the file
 
 ```
-metrics.json
+/toolkit/metrics.json
 ```
 
 The files to run the mitigations on the datasests can be found in the
-following path `/toolkit/analysis`. It takes several minutes to
-complete this process. Execute the following:
+following path `/toolkit/analysis`. It takes several minutes to hours to
+complete this process.
+The time will depend on the number of models you select and the number of
+mitigations you run.
+
+Execute the following:
 
 ```sh
 python main.py run_mitigations_justice
@@ -99,5 +103,7 @@ Inside toolkit/analysis/run_mitigations_justice.py and toolkit/analysis/run_miti
 FairnessProcessMitigation the models and mitigations can be set.
 
 models_to_fit contains an array of the models that are available to run.
+
 preprocessing_strategies contains the preprocessing strategies available.
+
 postprocessing_strategy contains the postprocessing strategy available.

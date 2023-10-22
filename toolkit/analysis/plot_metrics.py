@@ -3,9 +3,9 @@ import os
 import numpy as np
 from matplotlib import pyplot as plt
 
-from python.helpers import common
+from toolkit.helpers import common
 
-METRICS_FOLDER = '../plots/metrics/'
+METRICS_FOLDER = 'toolkit/plots/metrics/'
 
 
 def plot_disparity_impact_by_ethnicity_algorithm(target):
@@ -106,6 +106,8 @@ def plot_accuracy_by_ethnicity_algorithm(target):
         plt.close()
 
 
-if __name__ == "__main__":
+def plot():
     plot_disparity_impact_by_ethnicity_algorithm('Justice')
     plot_accuracy_by_ethnicity_algorithm('Justice')
+    plot_disparity_impact_by_ethnicity_algorithm('Police')
+    plot_accuracy_by_ethnicity_algorithm('Police')

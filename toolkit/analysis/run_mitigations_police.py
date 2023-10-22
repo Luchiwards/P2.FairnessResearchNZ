@@ -1,18 +1,24 @@
-from typing import List, Optional
+import random
+from typing import Optional, List
 
-from python.helpers import common, project_helper
+import numpy as np
 
-from python.datasets_objects import justice
+np.random.seed(760)
 
-PATH_IMAGES = '../plots/'
+from toolkit.helpers import common, project_helper
+from toolkit.datasets_objects import police
+
+random.seed(42)
+
+PATH_IMAGES = 'toolkit/plots/'
 
 
 def run_process(
         preprocessing_strategies: Optional[List[common.PostProcessingStrategy]] = None,
         postprocessing_strategy: Optional[common.PostProcessingStrategy] = None,
 ):
-    sds = justice.JusticeDataset()
-    database_name = 'Justice'
+    sds = police.PoliceDataset()
+    database_name = 'Police'
 
     dataset_orig_train, dataset_orig_test = sds.split([0.7], shuffle=True, seed=42)
 
@@ -21,10 +27,10 @@ def run_process(
         dataset_origin_test=dataset_orig_test,
         privileged_groups=sds.default_privileged_groups,
         unprivileged_groups=sds.default_unprivileged_groups,
-        privileged_groups_encoding_map=justice.ETHNICITY_ENCODING,
+        privileged_groups_encoding_map=police.ETHNICITY_ENCODING,
         name_dataset=database_name,
+        label_verb='taken to court',
         tuning_scoring='precision',
-        label_verb='incarcerated',
         n_jobs=-1,
         save_images=True,
         preprocessing_strategies=preprocessing_strategies,
@@ -41,7 +47,7 @@ def run_process(
     fairness_process.equalized_odds_models()
 
 
-if __name__ == "__main__":
+def run_mitigations():
     run_process()
     # run_process(
     #     preprocessing_strategies=[common.PreProcessingStrategies.REWEIGHING]

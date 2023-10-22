@@ -7,6 +7,7 @@ reproduce the work presented in a paper submitted as part of COMPSCI
 ## Requirements
 
 ### R
+
 To generate some of the plots, you need to have a base R installation.
 On Debian (Bookworm as of this writing), this will install the
 necessary requirements:
@@ -61,14 +62,13 @@ analyses on each of them. It stores all the results in the file
 metrics.json
 ```
 
-The files to run the analisis on the datasests can be found in the
+The files to run the mitigations on the datasests can be found in the
 following path `/python/analysis`. It takes several minutes to
 complete this process. Execute the following:
 
 ```sh
-cd python/analysis
-python3 run_metrics_justice.py
-python3 run_metrics_police.py
+python main.py run_mitigations_justice
+python main.py run_mitigations_police
 ```
 
 The script produces different plots that can be found in the following
@@ -83,4 +83,10 @@ are:
 ```
 justice.py
 police.py
+```
+
+To generate the metrics run
+
+```sh
+python main.py plot_metrics
 ```

@@ -14,7 +14,7 @@ import numpy as np
 import pandas as pd
 from aif360.datasets import StandardDataset
 
-from python.helpers import common
+from toolkit.helpers import common
 
 ETHNICITIES = [
     'Pacific Island',

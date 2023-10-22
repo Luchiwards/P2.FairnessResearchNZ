@@ -7,9 +7,9 @@ from typing import Optional
 
 from sklearn import ensemble, tree, linear_model
 
-DATA_PATH = '../../data/'
+DATA_PATH = 'data/'
 
-METADATA_FILE_NAME = f'../metrics.json'
+METADATA_FILE_NAME = f'toolkit/metrics.json'
 
 
 def get_model_metadata():

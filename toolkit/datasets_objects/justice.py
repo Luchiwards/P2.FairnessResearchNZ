@@ -8,14 +8,14 @@ import pandas as pd
 
 from aif360 import datasets
 
-from python.helpers import common
+from toolkit.helpers import common
 
 random.seed(42)
 ETHNICITIES = ['European', 'Asian', 'Maori', 'Other', 'Pacific Peoples']
 
 ETHNICITY_ENCODING = {ethnicity: index for index, ethnicity in enumerate(ETHNICITIES)}
 
-FOLDER = f"../datasets/justice/"
+FOLDER = f"toolkit/datasets/justice/"
 
 
 def default_preprocessing(df: pd.DataFrame, balanced=True):

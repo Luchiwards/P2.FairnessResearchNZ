@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 from sklearn import tree, linear_model, ensemble, svm, neighbors, naive_bayes, model_selection
 from sklearn.metrics import accuracy_score
 
-from python.helpers import common
+from toolkit.helpers import common
 
 from aif360 import datasets
 from aif360.algorithms import preprocessing, postprocessing
@@ -182,7 +182,7 @@ class FairnessProcessMitigation:
         print(f"Tuning Model for {self.tuning_scoring}")
 
         database_name = self.get_model_database_name()
-        folder = f"../models/{database_name}/"
+        folder = f"toolkit/models/{database_name}/"
 
         if not os.path.exists(folder):
             os.makedirs(folder)
@@ -438,9 +438,9 @@ class FairnessProcessMitigation:
 
         if self.save_images:
             name_model_file = '_'.join([word[0:4] for word in name.split(' ')])
-            if not os.path.exists("../plots/"):
-                os.makedirs("../plots/")
-            plt.savefig(f"../plots/{self.get_model_database_name()}_{name_model_file}_eq_odds.png", dpi=80)
+            if not os.path.exists("toolkit/plots/"):
+                os.makedirs("toolkit/plots/")
+            plt.savefig(f"toolkit/plots/{self.get_model_database_name()}_{name_model_file}_eq_odds.png", dpi=80)
 
         plt.show()
 

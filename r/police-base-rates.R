@@ -1,7 +1,7 @@
 source("r/plots-common.R")
 
 ## police: main dataset
-police <- read.csv("data/dataset_police.csv.bz2", stringsAsFactors = TRUE)
+police <- read.csv("../data/dataset_police.csv.bz2", stringsAsFactors = TRUE)
 
 ## drop Traffic
 police <- subset(police, ANZSOC.Division != "Traffic and Vehicle Regulatory Offences")

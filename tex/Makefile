@@ -1,5 +1,6 @@
 HTML = html
-OUT = final-report.pdf lit-survey.pdf references.pdf $(HTML)/references.html
+OUT = final-report.pdf
+#OUT = final-report.pdf lit-survey.pdf references.pdf $(HTML)/references.html
 WATCH = references.tex
 HTLATEX = htlatex
 MAKE4HT = make4ht
